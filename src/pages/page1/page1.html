@@ -12,11 +12,14 @@
 
   <ion-item>
     <ion-label color="primary" floating>Task Priority</ion-label>
-    <ion-input [(ngModel)]="editPrioridade" id="editPrioridade"> {{ editPrioridade }} </ion-input> 
+    <ion-input [(ngModel)]="editPrioridade" id="editPrioridade" type="number"> {{ editPrioridade }} </ion-input> 
   </ion-item>
-
   <br><br>
-  <button ion-button round (click)="btnRemoveClick()" id="buttonRemover">Remover 1º</button>
+
+  <div [hidden]="isHidden">
+    <button ion-button round (click)="btnRemoveClick()" id="buttonRemover">Remover 1º</button>
+  </div>
+  <br>
   <button ion-button round (click)="btnAddClick()" id="buttonAdicionar">Adicionar</button>
   <br><br>
 

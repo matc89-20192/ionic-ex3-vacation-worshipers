@@ -11,12 +11,33 @@ export class Page1 {
   tasks: Array<{ description: string, priority: string }> = [];
   editDescricao: string = "";
   editPrioridade: string = "";
+  isHidden: boolean = true;
 
   constructor(public navCtrl: NavController, private toastCtrl: ToastController) {
   }
 
   btnRemoveClick() {
+    this.tasks.shift();
+    if(this.tasks.length===0)
+    {
+      this.isHidden=true;
+    }
+  }
 
+  itemTapped(event, task) {
+    let index = 0;
+    for(let t of this.tasks) {
+      if(t===task)
+      {
+        break;
+      }
+      index++;
+    }
+    this.tasks.splice(index,1);
+    if(this.tasks.length===0)
+    {
+      this.isHidden=true;
+    }
   }
 
   btnAddClick() {
@@ -50,9 +71,14 @@ export class Page1 {
       }
     }
 
-    let task = { description: this.editDescricao, priority: this.editPrioridade};
+    let task = { description: this.editDescricao, priority: "Prioridade: "+this.editPrioridade};
     this.tasks.push(task);
-
+    this.editPrioridade="";
+    this.editDescricao="";
+    if(this.isHidden===true)
+    {
+      this.isHidden=false;
+    }
     this.tasks.sort((obj1, obj2) => {
       if(obj1.priority<obj2.priority)
       {
