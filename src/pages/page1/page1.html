@@ -16,15 +16,15 @@
   </ion-item>
   <br><br>
 
-  <div [hidden]="isHidden">
-    <button ion-button round (click)="btnRemoveClick()" id="buttonRemover">Remover 1º</button>
-  </div>
+  <!--<div [hidden]="isHidden">-->
+    <button ion-button round (click)="btnRemoveClick()" id="buttonRemover" [disabled]="isDisabled">Remover 1º</button>
+  <!--</div>-->
   <br>
   <button ion-button round (click)="btnAddClick()" id="buttonAdicionar">Adicionar</button>
   <br><br>
 
-  <ion-list>
-    <button ion-item *ngFor="let task of tasks" (click)="itemTapped($event, task)">
+  <ion-list id="listView">
+    <button ion-item *ngFor="let task of listView" (click)="itemTapped($event, task)">
       {{ task.description }} <br> {{ task.priority }} 
     </button>
   </ion-list>
